@@ -30,7 +30,5 @@ td.scoutMove { background-color:#ff8; }
 a#startGame { display:block; margin:20px; }
 
 .log { width:1000px; height:100px; overflow:scroll; font-family:"Courier New", monospace; background-color:white; color:black; padding:3px; border:1px inset lightGray; }
-.log p { padding:2px; margin:none; }
-
-/*		.board td.known { background:url('../img/pieces_sprite.png') left top no-repeat; }*/
+.log p { padding:2px; margin:0; }
 

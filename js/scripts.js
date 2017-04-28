@@ -51,8 +51,8 @@ function undoLastMove() {
 function resetStacks() {
     $('.stack td').removeClass('selected');
 
-    for (i = 0; i < 12; i++) {
-        for (j = 0; j < 8; j++) {
+    for (var i = 0; i < 12; i++) {
+        for (var j = 0; j < 8; j++) {
             if (ranks[i].startingCountOverrideForBlue >= j + 1) {
                 $('.blue.stack tr:nth-child(' + (i + 1) + ') td:nth-child(' + (j + 1) + ')').addClass('blue').addClass(ranks[i].name);
             }
@@ -71,25 +71,6 @@ function figureOutUnknownPiece(tdElement, e) {
     eventAfterPieceSelection = e;
 }
 
-// /* =Testing only
-//  ---------------------------------------------------------- */
-//
-// function putTestPieces() {
-//     for (y = 0; y < 4; y++) {
-//         for (x = 0; x < 10; x++) {
-//             var randomRankId = Math.floor(Math.random() * 12);
-//             $('.board tr:nth-child(' + (y + 1) + ') td:nth-child(' + (x + 1) + ')').addClass(ranks[randomRankId].name);
-//         }
-//     }
-//     return;
-//     for (y = 6; y < 10; y++) {
-//         for (x = 0; x < 10; x++) {
-//             var randomRankId = Math.floor(Math.random() * 12);
-//             $('.board tr:nth-child(' + (y + 1) + ') td:nth-child(' + (x + 1) + ')').addClass(ranks[randomRankId].name);
-//         }
-//     }
-// }
-
 /* =Initialization
  ---------------------------------------------------------- */
 
@@ -104,13 +85,12 @@ $(window).load(function () {
         createRankClasses();
         setupEvents();
     });
-
-    //putTestPieces();
 });
 
 function generateBoard() {
     /* Generates a new board, sets up lakes and player colors */
     $('.board').append('<table border="0" cellpadding="0" cellspacing="0"></table>');
+    //noinspection JSJQueryEfficiency
     $('.board table').append('<tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th><th>H</th><th>I</th><th>J</th></tr>');
     for (var i = 0; i < 10; i++) {
         $('.board table').append('<tr><th>' + (i + 1) + '</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
@@ -362,7 +342,6 @@ function addToLog(item) {
             + ((item.type === 'fight-attacker') ? 'was <strong>successful</strong>.' : ((item.type === 'fight-defender')
                 ? 'was <strong>unsuccessful</strong>.' : 'resulted in a <strong>tie</strong>.')) + '</p>');
     }
-//	addTolog({ fromX: '2', fromY: '3', fromColor: 'red', fromRank: 'scout', toX: '3', toY: '3', toColor: 'red', toRank: 'scout', type: 'move' })
 }
 
 function fight(attackerRank, defenderRank) {
@@ -513,7 +492,7 @@ function addToStack(color, rankName) {
 }
 
 function selectNextInStack(tdElement) {
-    lastElement = tdElement;
+    var lastElement = tdElement;
     if (!lastElement || !lastElement.length) {
         return;
     }
